@@ -22,15 +22,35 @@ class Descripton extends Component{
         });
     }
 
+    changedHandler = (event) => {
+        this.setState({
+            person:[
+                {name:"Tarun", age:"21"},
+                {name:event.target.value, age:"42"},
+                {name:"Viaks", age:"23"}
+            ]
+        })
+    }
+
     render(){
         return(
             <div>
                 <h1>Hi this is react app.</h1>
                 <h3>This is really working.</h3>
                 <button onClick={this.switchStateHandler}>Switch Names</button>
-                <Person name={this.state.person[0].name} age={this.state.person[0].age} />
-                <Person name={this.state.person[1].name} age={this.state.person[1].age} />
-                <Person name={this.state.person[2].name} age={this.state.person[2].age} />
+                <Person 
+                    name={this.state.person[0].name} 
+                    age={this.state.person[0].age} />
+                <hr/>
+                <Person 
+                    name={this.state.person[1].name} 
+                    age={this.state.person[1].age} 
+                    change={this.changedHandler} />
+                <hr/>
+                <Person 
+                    name={this.state.person[2].name} 
+                    age={this.state.person[2].age} />
+                <hr/>
             </div>
         )
     }
