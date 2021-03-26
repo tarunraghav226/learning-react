@@ -6,9 +6,9 @@ class Descripton extends Component{
 
     state = {
         person:[
-            {name:"Tarun", age:"21"},
-            {name:"Arun", age:"22"},
-            {name:"Viaks", age:"23"}
+            {id:1,name:"Tarun", age:"21"},
+            {id:2,name:"Arun", age:"22"},
+            {id:3,name:"Viaks", age:"23"}
         ],
         showPersons : false
     }
@@ -16,20 +16,27 @@ class Descripton extends Component{
     switchStateHandler = ()=>{
         this.setState({
             person:[
-                {name:"Tarun", age:"21"},
-                {name:"Jaunty", age:"42"},
-                {name:"Viaks", age:"23"}
+                {id:1,name:"Tarun", age:"21"},
+                {id:2,name:"Jaunty", age:"42"},
+                {id:3,name:"Viaks", age:"23"}
             ]
         });
     }
 
-    changedHandler = (event) => {
+    changedHandler = (event, id) => {
+        const personIndex = this.state.person.findIndex(p=>{
+            return p.id === id;
+        });
+
+        const person = {...this.state.person[personIndex]};
+
+        person.name = event.target.value;
+
+        const persons = [...this.state.person];
+        persons[personIndex] = person;
+
         this.setState({
-            person:[
-                {name:"Tarun", age:"21"},
-                {name:event.target.value, age:"42"},
-                {name:"Viaks", age:"23"}
-            ]
+            person:persons
         })
     }
 
@@ -54,10 +61,11 @@ class Descripton extends Component{
                 {
                     this.state.person.map((person, index) => {
                     return <><Person 
-                                change={()=>alert("test")}
+                                change={(event)=>this.changedHandler(event, person.id)}
                                 name={person.name} 
                                 age={person.age}
-                                click={()=>this.deletePerson(index)}/>
+                                click={()=>this.deletePerson(index)}
+                                key={person.id}/>
                             <hr/>
                             </>
                     })
