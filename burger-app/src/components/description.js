@@ -53,6 +53,15 @@ class Descripton extends Component{
     }
 
     render(){
+        const style ={
+            backgroundColor : 'green',
+            padding : '10px',
+            color : 'white',
+            border : 'none',
+            borderRadius : '5px',
+            outline : 'none'
+        };
+
         let persons = null;
         if( this.state.showPersons ){
             persons = (
@@ -71,13 +80,20 @@ class Descripton extends Component{
                     })
                 }
             </>)
+            style.backgroundColor = 'red';
         }
+
+        let classes = [];
+
+        if(this.state.person.length <= 2) classes.push('red');
+        if(this.state.person.length <= 1) classes.push('bold');
         
         return(
             <div>
-                <h1>Hi this is react app.</h1>
-                <h3>This is really working.</h3>
-                <button onClick={this.togglePersons}>Toggle</button> <br/>
+                <h1 >Hi this is react app.</h1>
+                <h3 className={classes.join(' ')}>This is really working.</h3>
+                {console.log(classes.join(' '))}
+                <button style={style} onClick={this.togglePersons}>Toggle</button> <br/>
                 {persons}
             </div>
         )
