@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css'
 import Person from './person';
+import Radium from 'radium';
 
 class Descripton extends Component{
 
@@ -59,7 +60,10 @@ class Descripton extends Component{
             color : 'white',
             border : 'none',
             borderRadius : '5px',
-            outline : 'none'
+            outline : 'none',
+            ':hover' : {
+                backgroundColor: 'purple'
+            }
         };
 
         let persons = null;
@@ -81,6 +85,9 @@ class Descripton extends Component{
                 }
             </>)
             style.backgroundColor = 'red';
+            style[':hover'] =  {
+                backgroundColor: 'pink'
+            }
         }
 
         let classes = [];
@@ -92,7 +99,6 @@ class Descripton extends Component{
             <div>
                 <h1 >Hi this is react app.</h1>
                 <h3 className={classes.join(' ')}>This is really working.</h3>
-                {console.log(classes.join(' '))}
                 <button style={style} onClick={this.togglePersons}>Toggle</button> <br/>
                 {persons}
             </div>
@@ -100,4 +106,4 @@ class Descripton extends Component{
     }
 }
 
-export default Descripton;
+export default Radium(Descripton);
