@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import '../App.css'
-import Person from './person';
+import '../../container/App.css'
+import Person from '../person/person';
 import Radium from 'radium';
 
 class Descripton extends Component{
