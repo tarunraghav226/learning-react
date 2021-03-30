@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../../container/App.css'
-import Person from '../person/person';
 import Radium from 'radium';
+import Persons from '../persons/persons'
 
 class Descripton extends Component{
 
@@ -71,18 +71,10 @@ class Descripton extends Component{
             persons = (
             <>
                 <button onClick={this.switchStateHandler}>Switch Names</button>
-                {
-                    this.state.person.map((person, index) => {
-                    return <><Person 
-                                change={(event)=>this.changedHandler(event, person.id)}
-                                name={person.name} 
-                                age={person.age}
-                                click={()=>this.deletePerson(index)}
-                                key={person.id}/>
-                            <hr/>
-                            </>
-                    })
-                }
+                <Persons 
+                    persons={this.state.person}
+                    change={this.changedHandler}
+                    click={this.deletePerson}/>
             </>)
             style.backgroundColor = 'red';
             style[':hover'] =  {
