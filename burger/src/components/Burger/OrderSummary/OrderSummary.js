@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from '../../UI/Button/Button';
+
 const orderSummary = (props) => {
     const ingredientSummary = props.ingredients;
     const summaryList = Object.keys(props.ingredients)
@@ -15,7 +17,10 @@ const orderSummary = (props) => {
             <ul>
                 {summaryList}
             </ul>
+            <p>Total Price <strong>{props.price}</strong></p>
             <p>Continue to Checkout?</p>
+            <Button btnType="Danger" onClick={props.purchaseCancel}>Cancel</Button>
+            <Button btnType="Success" onClick={props.purchaseContinue}>Buy Now</Button>
         </>
     );
 };
